@@ -1,8 +1,23 @@
+@media (max-width: 991px) {
+    .service .service-item,
+    .portfolio .portfolio-item {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
 @media (max-width: 767px) {
     .home .home-text,
     .home .home-img,
     .about .about-img,
-    .about .about-info {
+    .about .about-info,
+    .about .skills .skill-item,
+    .service .service-item,
+    .portfolio .portfolio-item,
+    .portfolio-popup .description,
+    .portfolio-popup .info,
+    .contact .contact-item,
+    .contact .w-50 {
         flex: 0 0 100%;
         max-width: 100%;
     }
@@ -11,7 +26,8 @@
         order: 2;
     }
 
-    .home .home-text {
+    .home .home-text,
+    .contact .submit-btn {
         text-align: center;
     }
 
@@ -38,6 +54,42 @@
 
     .about .about-img {
         padding-bottom: 30px;
+    }
+
+    .about .timeline .timeline-item:nth-child(odd) {
+        padding-right: 15px;
+        text-align: left;
+        padding-left: 75px;
+    }
+
+    .about .timeline .timeline-item:nth-child(even) {
+        padding-left: 75px;
+    }
+
+    .about .timeline:before {
+        left: 35px;
+    }
+
+    .about .timeline .timeline-item:nth-child(odd) .icon {
+        right: auto;
+        left: -60px;
+    }
+
+    .about .timeline .timeline-item:nth-child(even) .icon {
+        left: -60px;
+    }
+
+    .about .timeline .timeline-item {
+        margin-bottom: 40px;
+    }
+
+    .about .timeline .timeline-item:last-child() {
+        margin-bottom: 0;
+    }
+
+    .about .timeline .timeline-item:nth-child(odd) .TII:before {
+        left: -30px;
+        right: auto;
     }
 }
 

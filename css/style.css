@@ -287,6 +287,58 @@ img {
     display: none;
 }
 
+/* Preloader */
+.preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1500;
+    background: var(--bg-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preloader.fade-out {
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.preloader .box {
+    width: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.preloader .box div {
+    height: 15px;
+    width: 15px;
+    background: var(--MainColor);
+    border-radius: 50%;
+    animation: loader 1s ease infinite;
+}
+
+.preloader .box div:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.preloader .box div:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes loader {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
 /* Header */
 .header {
     padding: 20px 15px;
@@ -1422,4 +1474,3 @@ img {
     text-align: right;
     padding: 0 15px;
 }
-

@@ -322,16 +322,25 @@ function bodyScrollingToggle() {
 })();
 
 
-// // Hide All Sections Except Active One...
+// Hide All Sections Except Active One...
 
-// (() => {
-//     const sections = document.querySelectorAll(".section");
-//     sections.forEach((section) => {
-//         if (! section.classList.contains("active")) {
-//             section.classList.add("hide");
-//         }
-//     })
-// })();
+(() => {
+    const sections = document.querySelectorAll(".section");
+    sections.forEach((section) => {
+        if (! section.classList.contains("active")) {
+            section.classList.add("hide");
+        }
+    })
+})();
+
+window.addEventListener("load", () => {
+
+    //Preloader
+    document.querySelector(".preloader").classList.add("fade-out");
+    setTimeout(() => {
+        document.querySelector(".preloader").style.display="none";
+    }, 600)
+})
 
 //Toggle Style Switcher...
 const styleSwitcherToggler = document.querySelector(".style-switcher-toggler");
@@ -350,8 +359,13 @@ window.addEventListener("scroll", () => {
 //Theme Colors...
 const alternateStyles = document.querySelectorAll(".alternate-style");
 function setActiveStyle(c) {
+    localStorage.setItem("color", c);
+    changeColor();
+}
+
+function changeColor() {
     alternateStyles.forEach((style) => {
-        if (c === style.getAttribute("title")) {
+        if (localStorage.getItem("color") === style.getAttribute("title")) {
             style.removeAttribute("disabled");
         } else {
             style.setAttribute("disabled", "true");
@@ -359,14 +373,45 @@ function setActiveStyle(c) {
     })
 }
 
-//Ligth & Dark Mode...
+// Checking if 'color' key exists...
+if (localStorage.getItem("color") !== null) {
+    changeColor();
+}
+
+//Light & Dark Mode...
 const dayNight = document.querySelector(".day-night");
 
 dayNight.addEventListener("click", () => {
-    dayNight.querySelector("i").classList.toggle("fa-sun");
-    dayNight.querySelector("i").classList.toggle("fa-moon");
     document.body.classList.toggle("dark");
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+    updateIcon();
 })
+
+function themeMode() {
+    if (localStorage.getItem("theme") !== null) {
+        if (localStorage.getItem("theme") === "light") {
+            document.body.classList.remove("dark");
+        } else {
+            document.body.classList.add("dark");
+        }
+    }
+    updateIcon();
+}
+themeMode();
+
+function updateIcon() {
+    if (document.body.classList.contains("dark")) {
+        dayNight.querySelector("i").classList.remove("fa-moon");
+        dayNight.querySelector("i").classList.add("fa-sun");
+    } else {
+        dayNight.querySelector("i").classList.remove("fa-sun");
+        dayNight.querySelector("i").classList.add("fa-moon");
+    }
+}
 
 window.addEventListener("load", () => {
     if (document.body.classList.contains("dark")) {
